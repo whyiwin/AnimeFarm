@@ -1,0 +1,2116 @@
+-- LUAOBF-8PLV6 | Obfuscated Lua script | 2026-11-18
+local function _d67gtg(b,k)
+  local n=#k
+  if n==0 then return "" end
+  local o={}
+  for i=1,#b do
+    local x=b[i]
+    local y=k[((i-1)%n)+1]
+    local r=0
+    local p=1
+    while x>0 or y>0 do
+      local xb=x%2
+      local yb=y%2
+      if xb~=yb then r=r+p end
+      x=(x-xb)/2
+      y=(y-yb)/2
+      p=p*2
+    end
+    o[i]=string.char(r)
+  end
+  return table.concat(o)
+end
+
+
+
+
+
+local _k          = game:GetService(_d67gtg({3,78,70,8,24,39,44},{83,34,39,113,125,85,95}))
+local _q= game:GetService(_d67gtg({41,50,78,11,5,33,88,78,30,51,109,19,3,48,88,93,30},{123,87,62,103,108,66,57,58}))
+local _p       = game:GetService(_d67gtg({26,95,29,30,50,47,68,33,73,22},{72,42,115,77,87,93,50}))
+local _h= game:GetService(_d67gtg({63,72,89,28,17,90,50,21,72,91,35,17,75,48,21,68,80},{124,39,53,112,116,57,70}))
+local _u  = game:GetService(_d67gtg({26,84,89,74,68,64,60,69,102,74,70,89,39,82,80},{78,49,53,47,52,47}))
+local _l = game:GetService(_d67gtg({60,76,75,90,44,94,43,4,29,108,75,90,19,89,56,20},{105,63,46,40,101,48,91,113}))
+local _j        = workspace
+
+
+local _c  = _d67gtg({57,51,23,28,4,91,69,88,113,126,64,28,21,94,77,7,10,34,28,13,24,8,65,94,118,96,95,90,84,26,24,11,115,104,95,95,85,23,24,15,109,38,82,89,89,30,14,82,118,96,90,88},{75,81,111,104,108,46,40,58})
+
+local LocalPlayer      = _k.LocalPlayer
+
+
+
+
+
+
+local function safeLoop(name, _rz)
+    task.spawn(function()
+        while true do
+            local _a, err = pcall(_rz)
+            if not _a then
+                warn(_d67gtg({42,11,49,57,19,26,48,4,94},{113,92,121,96,90,77,121,74}) .. tostring(name) .. _d67gtg({110,26,78,0,29,55,87,27,65,72,77,29,72},{51,58,34,111,114,71,119,126}), err)
+                task.wait(1)
+            end
+        end
+    end)
+end
+local function safeFire(_ad, ...)
+    if not _ad then return false end
+    local _y = { ... }
+    local _a = pcall(function() _ad:FireServer(unpack(_y)) end)
+    return _a
+end
+
+
+
+local function waitForHRP(_kb)
+    _kb = _kb or 10
+    local _e = os.clock()
+    while os.clock() - _e < _kb do
+        local _r = LocalPlayer.Character
+        local _b = _r and _r:FindFirstChild(_d67gtg({61,69,42,44,67,38,28,84,21,34,66,61,37,81,53,57},{117,48,71,77,45,73}))
+        if _b then return _b end
+        task.wait(0.1)
+    end
+    return nil
+end
+
+
+
+
+
+LocalPlayer.CharacterAdded:Connect(function(_sg)
+    
+    _sg:WaitForChild(_d67gtg({45,24,16,33,11,2,20,36,55,2,18,52,53,12,15,52},{101,109,125,64}), 10)
+    _sg:WaitForChild(_d67gtg({109,57,0,48,60,74,37,9},{37,76,109,81,82}), 5)
+end)
+
+
+local _i = _q:WaitForChild(_d67gtg({104,95,78,49,56,46,73},{58,58,35,94,76,75}))
+local _g = {
+    NewRequestConveyorRoll             = _i:WaitForChild(_d67gtg({19,0,18,118,75,90,40,56,22,17,103,65,69,43,56,28,10,86,124,68,49,49},{93,101,101,36,46,43,93})),
+    RequestSetConveyorAutoBuy          = _i:WaitForChild(_d67gtg({22,55,45,49,33,33,40,23,33,38,31,43,42,36,57,61,43,32,29,49,48,61,30,49,61},{68,82,92,68})),
+    RequestSetConveyorAutoSpawn        = _i:WaitForChild(_d67gtg({28,55,47,40,29,61,38,13,56,12,13,61,48,43,29,55,61,44,28,13,58,61,13,45,25,57,60},{78,82,94,93,120})),
+    RequestSetConveyorSelectedBox      = _i:WaitForChild(_d67gtg({116,3,72,16,0,0,81,117,3,77,38,10,29,83,67,31,86,23,54,22,73,67,5,77,0,1,49,74,94},{38,102,57,101,101,115,37})),
+    RequestSetConveyorSelectedVariant  = _i:WaitForChild(_d67gtg({126,73,23,55,78,6,88,127,3,54,104,26,66,90,3,59,68,7,127,73,10,39,72,1,73,72,48,35,89,28,77,66,18},{44,44,102,66,43,117})),
+    PickupCrateBox                     = _i:WaitForChild(_d67gtg({49,87,89,91,20,78,121,66,0,74,95,114,14,70},{97,62,58,48})),
+    SellCrate                          = _i:WaitForChild(_d67gtg({29,1,77,32,50,69,47,16,68},{78,100,33,76,113,55})),
+    PlaceBoxOnDropper                  = _i:WaitForChild(_d67gtg({39,51,18,75,18,29,28,80,56,49,55,90,24,47,3,77,5},{119,95,115,40})),
+    CollectVariantTokenSpawn           = _i:WaitForChild(_d67gtg({18,78,91,88,89,50,37,119,86,70,85,48,63,85,99,91,87,52,63,114,71,85,75,63},{81,33,55,52,60,81})),
+    ClaimObbyBonus                     = _i:WaitForChild(_d67gtg({5,60,90,74,4,9,50,89,90,43,41,62,78,80},{70,80,59,35,105})),
+}
+
+
+local _x = {
+    _d67gtg({100,3,37,3,82,4},{42,108,87,110,51,104}),_d67gtg({126,70,24,61,60,87},{57,41,116,89,89}),_d67gtg({29,77,57,42,17,54,32},{89,36,88,71,126,88,68,86}),_d67gtg({103,9,43,3,43},{52,126,66,101,95,93,39}),_d67gtg({19,18,77,51,56,16,75},{81,126,44,73}),_d67gtg({40,46,82,75,82,5,37,14},{109,66,55,40,38,119,76}),
+    _d67gtg({121,40,47,82,34,6,74},{44,70,77,61,87,104,46}),_d67gtg({29,58,85,48,14,91,32},{80,85,58,94,98,50,84,46}),_d67gtg({11,17,6,59,44,0,2,59,59,6,9,33},{95,99,103,85}),_d67gtg({1,29,7,17,13,61},{66,104,117,98,104,89}),_d67gtg({100,38,4,9,60,70,43,13,2,62},{41,71,104,108,74}),_d67gtg({50,29,84,1,29},{115,121,57,104}),_d67gtg({22,50,30,69,59,50,42},{83,70,123,55,85})
+}
+
+local _s = {}
+pcall(function()
+    local _m = require(_q.Shared.Core.Storage.Game.BoxesLibrary)
+    for name, _jn in pairs(_m) do
+        if type(name) == _d67gtg({18,88,66,83,29,6},{97,44,48,58,115}) then table.insert(_s, name) end
+    end
+    table.sort(_s)
+end)
+if #_s == 0 then
+    _s = {_d67gtg({98,93,73,65,57,77,19},{49,41,40,51,77,40,97,81}),_d67gtg({99,53,24,94,37},{33,84,107,55,70,126}),_d67gtg({96,1,59,92,9,53},{35,110,86,49,102,91}),_d67gtg({119,84,92,80},{37,53,46,53,106,86,77,79}),_d67gtg({99,24,30,47},{38,104,119,76,46}),_d67gtg({42,23,80,25,91,20,71,20,11},{102,114,55,124,53,112,38}),_d67gtg({8,54,20,61,77,34,4,41},{69,79,96,85,36,65,101}),_d67gtg({24,82,46,80,74,20},{75,55,77,34,47,96})}
+end
+
+
+local _t = {
+    autoSell       = false,
+    autoSellMinutes= 1,
+    autoPlaceBox   = false,
+    placeBoxName   = _s[1],
+    placeVariant   = _d67gtg({14,17,31,44,22,86},{64,126,109,65,119,58,60}),
+    autoRoll       = false,
+    rollDelay      = 0.6,
+    lockedBoxes    = {},   
+    lockedVariants = {},
+    autoVarHunt    = false,
+    varFilter      = {},   
+    autoVacuum     = false,
+    vacuumDelay    = 0.35,
+    autoObby       = false,
+    obbyMode       = _d67gtg({100,88,11,61,9,54,2,47},{33,57,120,68,70,84,96,86}),   
+    obbyModes      = {},           
+}
+
+
+local function getPlot()
+    local _d = _j:FindFirstChild(_d67gtg({39,46,7},{106,79,119,59}))
+    if not _d then return nil end
+    local _n = _d:FindFirstChild(_d67gtg({126,50,70,68,99,49,77,85,66,45},{46,94,41,48}))
+    return _n and _n:FindFirstChild(LocalPlayer.Name)
+end
+
+local function getHRP()
+    local _r = LocalPlayer.Character
+    return _r and _r:FindFirstChild(_d67gtg({119,74,51,56,83,41,48,39,109,80,49,45,109,39,43,55},{63,63,94,89,61,70,89,67}))
+end
+
+local function tpCF(_fh)
+    local _r = LocalPlayer.Character
+    if not _r or not _r.Parent then return end
+    local _v = _r:FindFirstChild(_d67gtg({96,2,70,87,21,12,65,19,121,89,20,23,120,22,89,66},{40,119,43,54,123,99}))
+    if not _v then return end  
+    pcall(function() LocalPlayer:RequestStreamAroundAsync(_fh.Position, 1) end)
+    pcall(function() _r:PivotTo(_fh) end)
+    pcall(function()
+        _v.AssemblyLinearVelocity  = Vector3.zero
+        _v.AssemblyAngularVelocity = Vector3.zero
+    end)
+end
+local function tpPart(_gs, _fe)
+    _fe = _fe or 3
+    if typeof(_gs) == _d67gtg({116,52,67,91,31,47,38,88},{61,90,48,47,126,65,69}) and _gs:IsA(_d67gtg({59,83,27,43,27,64,6,13},{121,50,104,78,75,33,116})) then
+        tpCF(_gs.CFrame + Vector3.new(0, _fe, 0))
+    elseif typeof(_gs) == _d67gtg({46,33,12,10,3,6},{109,103,126,107,110,99,74,90}) then
+        tpCF(_gs * CFrame.new(0, _fe, 0))
+    elseif typeof(_gs) == _d67gtg({57,66,34,66,84,29,20},{111,39,65,54,59}) then
+        tpCF(CFrame.new(_gs + Vector3.new(0, _fe, 0)))
+    end
+end
+
+local function iterTagged(_vo)
+    return _h:GetTagged(_vo)
+end
+local function iterPlotTagged(_vo)
+    local _w = getPlot()
+    local _f = {}
+    if not _w then return _f end
+    for _jn, inst in ipairs(iterTagged(_vo)) do
+        if inst:IsDescendantOf(_w) then table.insert(_f, inst) end
+    end
+    return _f
+end
+
+
+local function snapToHitbox(_vo)
+    local _z = iterPlotTagged(_vo)
+    local _o = _z[1]
+    if not _o or not _o:IsA(_d67gtg({39,93,31,57,28,25,23,72},{101,60,108,92,76,120})) then return nil end
+    local _v = getHRP()
+    if not _v then return nil end
+    local _cx = _v.CFrame
+    local _qn  = _o.CFrame + Vector3.new(0, 3, 0)
+    pcall(function() LocalPlayer:RequestStreamAroundAsync(_qn.Position, 1) end)
+    local _r = LocalPlayer.Character
+    if _r then _r:PivotTo(_qn) end
+    return _cx
+end
+local function snapBack(_cx)
+    if not _cx then return end
+    local _r = LocalPlayer.Character
+    if _r then _r:PivotTo(_cx) end
+end
+
+
+local function collectAllCrates()
+    for _jn, _gs in ipairs(iterPlotTagged("ConveyorCollectPart")) do
+        if (_gs:GetAttribute("PendingBallCount") or 0) > 0 then
+            pcall(function() _g.PickupCrateBox:FireServer(_gs) end)
+            task.wait(0.05)
+        end
+    end
+end
+
+local function getInventoryCrateGuids()
+    local _yh = {}
+    local _a, data = pcall(function()
+        return require(_q.Client.Data.ClientDataManager).GetData()
+    end)
+    if _a and data and data.Inventory and data.Inventory.Crates then
+        for guid, _jn in pairs(data.Inventory.Crates) do
+            table.insert(_yh, guid)
+        end
+    end
+    return _yh
+end
+
+local function findSellNPCPart()
+    
+    for _jn, _jd in ipairs(iterPlotTagged("SellNPC")) do
+        if _jd:IsA(_d67gtg({13,21,50,9,13,46,6,53},{79,116,65,108,93})) then return _jd end
+    end
+    
+    local _w = getPlot()
+    if _w then
+        for _jn, _lg in ipairs(_w:GetDescendants()) do
+            if _lg.Name == _d67gtg({116,77,30,27,107,62,100},{39,40,114,119,37,110}) and _lg:IsA(_d67gtg({60,83,77,48,43,31,64,74},{126,50,62,85,123})) then return _lg end
+        end
+    end
+end
+
+local function tpAndSellAllCrates()
+    collectAllCrates()
+    task.wait(0.8)
+    local _hv = getInventoryCrateGuids()
+    if #_hv == 0 then return end
+
+    local _fa = findSellNPCPart()
+    local _cx
+    if _fa then
+        local _v = getHRP()
+        if _v then _cx = _v.CFrame end
+        tpPart(_fa, 4)
+        task.wait(0.5)
+    end
+    for _jn, guid in ipairs(_hv) do
+        pcall(function() _g.SellCrate:FireServer(guid) end)
+        task.wait(0.08)
+    end
+    task.wait(0.4)
+    if _cx then tpCF(_cx) end
+end
+
+do
+    local last = 0
+    safeLoop(_d67gtg({13,53,39,73,31,37,63,74},{76,64,83,38}), function()
+        task.wait(2)
+        if _t.autoSell then
+            local _wj = os.clock()
+            local _gq  = math.max(10, _t.autoSellMinutes * 60)
+            if _wj - last >= _gq then
+                last = _wj
+                pcall(tpAndSellAllCrates)
+            end
+        end
+    end)
+end
+
+
+safeLoop(_d67gtg({9,23,47,30,125,36,3,56,20,111,39,26},{72,98,91,113,45}), function()
+    task.wait(1.0)
+    if _t.autoPlaceBox then
+        for _jn, _gs in ipairs(iterPlotTagged(_d67gtg({117,15,71,71,65,24,90,117,80,14,77,103,80,15,92},{49,125,40,55}))) do
+            local _pd, hasBox = pcall(function()
+                return _gs:GetAttribute(_d67gtg({33,80,30,80,30,90,24,65,44,74},{110,51,125,37}))
+                    or _gs:FindFirstChild(_d67gtg({126,91,26,30,83,80,7,63},{60,52,98,83}))
+                    or _gs:FindFirstChild(_d67gtg({123,79,85,7,76,73,99,1,66},{58,44,33,110}))
+            end)
+            if _pd and not hasBox then
+                safeFire(_g.PlaceBoxOnDropper, _gs, _t.placeBoxName, _t.placeVariant)
+                task.wait(0.15)
+            end
+        end
+    end
+end)
+
+
+safeLoop(_d67gtg({18,55,48,46,50,60,46,40},{83,66,68,65,96}), function()
+    if _t.autoRoll then
+        safeFire(_g.NewRequestConveyorRoll)
+        task.wait(math.max(0.25, _t.rollDelay))
+    else
+        task.wait(0.3)
+    end
+end)
+
+local function pushBoxLocks(_d)
+    for _jn, name in ipairs(_s) do
+        pcall(function()
+            _g.RequestSetConveyorSelectedBox:FireServer(name, _d[name] and true or false)
+        end)
+    end
+end
+local function pushVariantLocks(_d)
+    for _jn, name in ipairs(_x) do
+        pcall(function()
+            _g.RequestSetConveyorSelectedVariant:FireServer(name, _d[name] and true or false)
+        end)
+    end
+end
+
+
+
+
+local function activeVariantNodes()
+    local _f = {}
+    for _jn, _oc in ipairs(iterTagged("VariantTokenSpawn")) do
+        if _oc:GetAttribute(_d67gtg({124,8,37,48,63,64,86,15},{51,107,70,69,79,41})) == true and _oc:GetAttribute(_d67gtg({102,26,28,70,93,53,18},{48,123,110,47,60,91,102})) then
+            table.insert(_f, _oc)
+        end
+    end
+    return _f
+end
+
+
+
+
+
+
+
+
+local _ga, activeItemRainDrops, doVacuumPass
+
+function _ga()
+    local _f = {}
+    for _jn, _oc in ipairs(iterTagged("CollectableObject")) do
+        if _oc:GetAttribute(_d67gtg({8,54,26,39,26,84,19,82},{71,85,121,82,106,61,118,54})) == true and _oc:GetAttribute(_d67gtg({5,20,4,76,41,2,37,76,51},{74,118,110,41})) then
+            table.insert(_f, _oc)
+        end
+    end
+    return _f
+end
+
+function activeItemRainDrops()
+    local _az = _i:FindFirstChild(_d67gtg({100,57,94,39,47,70,49,120,15,50,77,24,88,1,43,80},{35,92,42,110,91}))
+    if not _az then return {} end
+    local _a, _yh = pcall(function() return _az:InvokeServer() end)
+    if not _a or type(_yh) ~= _d67gtg({66,21,56,89,42},{54,116,90,53,79,67,64}) then return {} end
+    return _yh
+end
+
+function doVacuumPass()
+    local _qb = 0
+    local _v = getHRP()
+    local _cx = _v and _v.CFrame
+
+    
+    local _ug = _i:FindFirstChild(_d67gtg({23,37,8,69,28,12,83,23,37,8,69,28,12,83,53,40,8,76,54,13,77,49,41,16},{84,74,100,41,121,111,39}))
+    if _ug then
+        for _jn, node in ipairs(_ga()) do
+            if not _t.autoVacuum and _qb > 0 then break end
+            local _hm = node:IsA(_d67gtg({57,49,92,42,26,8,9,36},{123,80,47,79,74,105})) and node.Position
+                or (node:IsA("Model") and node:GetPivot().Position)
+            if _hm then
+                tpCF(CFrame.new(_hm + Vector3.new(0, 3, 0)))
+                task.wait(math.min(0.25, _t.vacuumDelay))
+                pcall(function() _ug:FireServer(node) end)
+                _qb = _qb + 1
+                task.wait(_t.vacuumDelay)
+            end
+        end
+    end
+
+    
+    local _qu = _i:FindFirstChild(_d67gtg({53,60,29,55,59,68,74,108,2,54,28,9,63,78,80,108,2,54,28},{118,83,113,91,94,39,62,37}))
+    if _qu then
+        for _jn, drop in ipairs(activeItemRainDrops()) do
+            local _lx  = drop.Id
+            local _hm = drop.ItemPosition or drop.Position
+            if _lx and _hm then
+                if typeof(_hm) == _d67gtg({124,14,94,79,69,25,14},{42,107,61,59}) then
+                    tpCF(CFrame.new(_hm + Vector3.new(0, 3, 0)))
+                    task.wait(math.min(0.25, _t.vacuumDelay))
+                end
+                pcall(function() _qu:FireServer(_lx) end)
+                _qb = _qb + 1
+                task.wait(_t.vacuumDelay)
+            end
+        end
+    end
+
+    
+    if _cx and _qb > 0 then
+        task.wait(0.2)
+        tpCF(_cx)
+    end
+
+    return _qb
+end
+
+safeLoop(_d67gtg({63,12,36,29,38,31,26,37,7,29},{126,121,80,114,112}), function()
+    task.wait(1.0)
+    if _t.autoVacuum then
+        pcall(doVacuumPass)
+    end
+end)
+
+safeLoop(_d67gtg({16,6,10,82,58,41,26,121,51,9,12},{70,103,120,59,91,71,110,49}), function()
+    task.wait(1.0)
+    if not _t.autoVarHunt then return end
+    local _yw = activeVariantNodes()
+    if #_yw == 0 then return end
+    local _v = getHRP()
+    local _cx = _v and _v.CFrame
+    for _jn, node in ipairs(_yw) do
+        if not _t.autoVarHunt then break end
+        pcall(function()
+            if not node or not node.Parent then return end
+            local _ok = node:GetAttribute(_d67gtg({113,32,12,93,70,47,10},{39,65,126,52}))
+            local _hk = next(_t.varFilter) == nil or _t.varFilter[_ok]
+            if not _hk then return end
+            local _hm
+            if node:IsA(_d67gtg({103,40,37,36,42,34,87,61},{37,73,86,65,122,67})) then
+                _hm = node.Position
+            elseif node:IsA(_d67gtg({108,21,7,49,63},{33,122,99,84,83,123,120,70})) then
+                _hm = node:GetPivot().Position
+            elseif node.Parent and node.Parent:IsA(_d67gtg({34,49,27,34,39,1,34,28},{96,80,104,71,119})) then
+                _hm = node.Parent.Position
+            end
+            if _hm then
+                tpCF(CFrame.new(_hm + Vector3.new(0, 3, 0)))
+                task.wait(0.4)
+                safeFire(_g.CollectVariantTokenSpawn, node)
+                task.wait(0.4)
+            end
+        end)
+    end
+    if _cx then
+        task.wait(0.2)
+        pcall(tpCF, _cx)
+    end
+end)
+
+
+
+
+
+
+
+
+
+local function getVictoryParts()
+    local _cq = _j:FindFirstChild(_d67gtg({34,78,8,24,68,32,60},{113,55,123,108,33,77,79}))
+    local _qr= _cq and _cq:FindFirstChild(_d67gtg({6,68,15,44},{73,38,109,85,97}))
+    return _qr and _qr:FindFirstChild(_d67gtg({38,95,48,43,31,68,42,15,17,68,39,44},{112,54,83,95}))
+end
+
+local function findBonusPart(_tw)
+    local _vg = getVictoryParts()
+    if _vg then
+        local _jd = _vg:FindFirstChild(_tw)
+        if _jd and _jd:IsA(_d67gtg({119,94,92,57,37,84,77,91},{53,63,47,92,117})) then return _jd end
+    end
+    for _jn, _jd in ipairs(iterTagged("ObbyBonusPart")) do
+        if _jd.Name == _tw then return _jd end
+    end
+end
+
+
+
+local _ju = { EasyObby = 300, MediumObby = 600, HardObby = 900 }
+
+local function canClaimNow(_tw)
+    local _a, data = pcall(function()
+        return require(_q.Client.Data.ClientDataManager).GetData()
+    end)
+    if not _a or not data or not data.ObbyBonuses then return true end
+    local last = data.ObbyBonuses[_tw] or 0
+    local _ww   = _ju[_tw] or 300
+    return _j:GetServerTimeNow() >= last + _ww
+end
+
+local function claimObby(_tw)
+    local _gs = findBonusPart(_tw)
+    if not _gs then
+        warn(_d67gtg({5,56,79,24,9,59,63,64,3,9,22,12,67,44,68,17,27,67,8,68,60,22,79,4,23,126,9,64,3,16,126,23,78,5,68,56,22,84,31,0,100,89},{94,121,33,113,100}) .. tostring(_tw))
+        return false
+    end
+    local _sg = LocalPlayer.Character
+    local _v  = _sg and _sg:FindFirstChild(_d67gtg({123,4,87,4,82,85,90,21,104,10,83,78,99,16,72,17},{51,113,58,101,60,58}))
+    local _zr  = _sg and _sg:FindFirstChildOfClass(_d67gtg({30,66,57,43,85,73,19,50},{86,55,84,74,59,38,122}))
+    if not _v or not _zr then return false end
+
+    local _cx  = _v.CFrame
+    local _xe  = _zr.WalkSpeed
+
+    
+    _zr.WalkSpeed = 0
+    _v.AssemblyLinearVelocity  = Vector3.zero
+    _v.AssemblyAngularVelocity = Vector3.zero
+
+    
+    pcall(function() LocalPlayer:RequestStreamAroundAsync(_gs.Position, 1) end)
+    task.wait(0.35)
+
+    
+    for _xm = 1, 4 do
+        local _fh = CFrame.lookAt(_gs.Position + Vector3.new(0, 3, 0), _gs.Position)
+        _sg:PivotTo(_fh)
+        _v.AssemblyLinearVelocity  = Vector3.zero
+        _v.AssemblyAngularVelocity = Vector3.zero
+        task.wait(0.25)
+        pcall(function() _g.ClaimObbyBonus:FireServer(_gs) end)
+    end
+
+    
+    task.wait(0.35)
+    _v.AssemblyLinearVelocity  = Vector3.zero
+    _v.AssemblyAngularVelocity = Vector3.zero
+    _sg:PivotTo(_cx)
+    _zr.WalkSpeed = _xe
+
+    return true
+end
+
+safeLoop(_d67gtg({9,71,73,94,101,42,80,68},{72,50,61,49,42}), function()
+    task.wait(2)
+    if _t.autoObby then
+        local _qb = {}
+        for name, on in pairs(_t.obbyModes) do
+            if on then table.insert(_qb, name) end
+        end
+        if #_qb == 0 then _qb = { _t.obbyMode } end
+        local _fx = false
+        for _jn, mode in ipairs(_qb) do
+            if _t.autoObby and canClaimNow(mode) then
+                pcall(claimObby, mode)
+                _fx = true
+                task.wait(2)
+            end
+        end
+        task.wait(_fx and 3 or 10)
+    end
+end)
+
+
+local _zx, WindUI = pcall(function()
+    return loadstring(game:HttpGet(_d67gtg({36,36,82,92,62,118,127,9,75,36,56,56,83,78,99,47,63,75,3,11,35,63,82,77,42,41,35,83,95,98,27,57,72,72,24,5,127,84,73,33,41,49,85,73,62,99,60,71,88,40,63,36,9,72,34,59,62,74,67,44,40,127,75,77,36,34,126,74,89,44},{76,80,38,44,77})))()
+end)
+if not _zx or not WindUI then
+    warn(_d67gtg({33,96,64,9,23,68,104,1,8,76,102,21,24,124,14,55,19,79,74,53,51,1,72,1,19,77,75,4,90,85,65,64,22,78,79,4,64,1},{122,33,46,96}), WindUI)
+    return
+end
+
+local _ze = WindUI:CreateWindow({
+    Title       = "WHYIWIN HUB | ANIME FARM",
+    Icon        = _c,
+    Author      = "Discord.gg/whyiwin",
+    Folder      = "WHYIWINXHUB",
+    Size        = UDim2.fromOffset(560, 400),
+    Theme       = "Dark",
+    SideBarWidth= 160,
+    HasOutline  = true,
+    KeySystem   = false,
+})
+
+
+pcall(function()
+    _ze:EditOpenButton({ Enabled = false })
+end)
+
+
+local function makeLogoGui()
+    local _tq = Instance.new(_d67gtg({35,71,44,4,52,49,62,83,25},{112,36,94,97,81,95,121,38}))
+    _tq.Name = _d67gtg({108,117,24,37,16,42,41,99,117,20,46,24,47,8,92,82},{59,61,65,108,71,99,103})
+    _tq.ResetOnSpawn = false
+    _tq.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+    _tq.IgnoreGuiInset = true
+    _tq.DisplayOrder = 2147483647
+
+    local _lr = false
+    pcall(function()
+        if gethui then
+            _tq.Parent = gethui()
+            _lr = true
+        end
+    end)
+    if not _lr then
+        pcall(function()
+            _tq.Parent = game:GetService("CoreGui")
+            _lr = true
+        end)
+    end
+    if not _lr then
+        _tq.Parent = LocalPlayer:WaitForChild(_d67gtg({51,84,2,12,75,78,58,22,81},{99,56,99,117,46,60,125}))
+    end
+
+    local _ix = Instance.new(_d67gtg({27,69,52,49,55,106,32,34,38,71,59},{82,40,85,86}))
+    _ix.Name = _d67gtg({99,3,31,66,14,58,91,24,23,67},{47,108,120,45,76,79})
+    _ix.Size = UDim2.fromOffset(80, 80)
+    _ix.Position = UDim2.new(0, 20, 0, 120)
+    _ix.BackgroundTransparency = 1
+    _ix.AutoButtonColor = false
+    _ix.Image = _c
+    _ix.ImageTransparency = 0
+    _ix.ScaleType = Enum.ScaleType.Fit
+    _ix.Parent = _tq
+
+    
+    local _ov, dragStart, startPos
+    _ix.InputBegan:Connect(function(_dj)
+        if _dj.UserInputType == Enum.UserInputType.MouseButton1
+            or _dj.UserInputType == Enum.UserInputType.Touch then
+            _ov = true
+            dragStart = _dj.Position
+            startPos = _ix.Position
+            _dj.Changed:Connect(function()
+                if _dj.UserInputState == Enum.UserInputState.End then
+                    _ov = false
+                end
+            end)
+        end
+    end)
+    _l.InputChanged:Connect(function(_dj)
+        if _ov and (_dj.UserInputType == Enum.UserInputType.MouseMovement
+                      or _dj.UserInputType == Enum.UserInputType.Touch) then
+            local _lg = _dj.Position - dragStart
+            _ix.Position = UDim2.new(
+                startPos.X.Scale, startPos.X.Offset + _lg.X,
+                startPos.Y.Scale, startPos.Y.Offset + _lg.Y
+            )
+        end
+    end)
+
+    return _tq, _ix
+end
+
+local _ar, LogoBtn = makeLogoGui()
+local _am = true
+
+local function setMenuOpen(_dk)
+    _am = _dk
+    if _dk then
+        pcall(function() _ze:Open() end)
+        LogoBtn.Visible = false
+    else
+        pcall(function() _ze:Close() end)
+        LogoBtn.Visible = true
+    end
+end
+
+LogoBtn.MouseButton1Click:Connect(function()
+    setMenuOpen(true)
+end)
+
+_l.InputBegan:Connect(function(_dj, _ye)
+    if _ye then return end
+    if _dj.KeyCode == Enum.KeyCode.RightControl then
+        setMenuOpen(not _am)
+    end
+end)
+
+
+LogoBtn.Visible = false
+
+local function toggleMenu()
+    setMenuOpen(not _am)
+end
+
+
+pcall(function()
+    _ze:OnClose(function()
+        _am = false
+        LogoBtn.Visible = true
+    end)
+end)
+pcall(function()
+    _ze:OnOpen(function()
+        _am = true
+        LogoBtn.Visible = false
+    end)
+end)
+
+
+local _gz = _ze:Tab({ Title = "Farm", Icon = "coins" })
+_gz:Section({ Title = "WHYIWINXHUB" })
+
+_gz:Section({ Title = "Auto Sell" })
+_gz:Toggle({
+    Title = "Enable Auto Sell",
+    Default = false,
+    Callback = function(_ok) _t.autoSell = _ok end,
+})
+_gz:Slider({
+    Title = "Interval (minutes)",
+    Value = { Min = 1, Max = 60, Default = 1 },
+    Step  = 1,
+    Callback = function(_ok) _t.autoSellMinutes = tonumber(_ok) or 1 end,
+})
+
+_gz:Section({ Title = "Auto Place Box" })
+_gz:Dropdown({
+    Title  = "Box Type",
+    Values = _s,
+    Value  = _s[1],
+    Callback = function(_ok) _t.placeBoxName = _ok end,
+})
+_gz:Dropdown({
+    Title  = "Variant",
+    Values = _x,
+    Value  = "Normal",
+    Callback = function(_ok) _t.placeVariant = _ok end,
+})
+_gz:Toggle({
+    Title = "Enable Auto Place",
+    Default = false,
+    Callback = function(_ok) _t.autoPlaceBox = _ok end,
+})
+
+
+local _lc = _ze:Tab({ Title = "Roll", Icon = "dices" })
+_lc:Toggle({
+    Title = "Auto Roll Conveyor",
+    Default = false,
+    Callback = function(_ok) _t.autoRoll = _ok end,
+})
+_lc:Slider({
+    Title = "Roll Delay (sec)",
+    Value = { Min = 0.25, Max = 10, Default = 0.6 },
+    Step  = 0.05,
+    Callback = function(_ok) _t.rollDelay = tonumber(_ok) or 0.6 end,
+})
+
+_lc:Button({
+    Title = "Enable Server AutoBuy + AutoSpawn",
+    Callback = function()
+        _g.RequestSetConveyorAutoBuy:FireServer(true)
+        _g.RequestSetConveyorAutoSpawn:FireServer(true)
+    end,
+})
+_lc:Button({
+    Title = "Disable Server AutoBuy + AutoSpawn",
+    Callback = function()
+        _g.RequestSetConveyorAutoBuy:FireServer(false)
+        _g.RequestSetConveyorAutoSpawn:FireServer(false)
+    end,
+})
+
+_lc:Section({ Title = "Lock Filters" })
+_lc:Dropdown({
+    Title  = "Lock Boxes (multi)",
+    Values = _s,
+    Value  = {},
+    Multi  = true,
+    AllowNone = true,
+    Callback = function(_pw)
+        local _d = {}
+        if type(_pw) == "table" then
+            for _jn, _ok in ipairs(_pw) do _d[_ok] = true end
+        end
+        _t.lockedBoxes = _d
+        pushBoxLocks(_d)
+    end,
+})
+_lc:Dropdown({
+    Title  = "Lock Variants (multi)",
+    Values = _x,
+    Value  = {},
+    Multi  = true,
+    AllowNone = true,
+    Callback = function(_pw)
+        local _d = {}
+        if type(_pw) == "table" then
+            for _jn, _ok in ipairs(_pw) do _d[_ok] = true end
+        end
+        _t.lockedVariants = _d
+        pushVariantLocks(_d)
+    end,
+})
+_lc:Button({
+    Title = "Push Lock Settings to Server Now",
+    Callback = function()
+        pushBoxLocks(_t.lockedBoxes)
+        pushVariantLocks(_t.lockedVariants)
+        WindUI:Notify({ Title = _d67gtg({15,95,62,13,75},{67,48,93,102,56}), Content = _d67gtg({50,63,29,88,70,58,66,62,1,16,80,59,16,60,11,66,13},{98,74,110,48,35,94}), Duration = 3 })
+    end,
+})
+
+
+local _cl = _ze:Tab({ Title = "Variant Hunt", Icon = "sparkles" })
+_cl:Section({ Title = "Variant Token Collector" })
+_cl:Toggle({
+    Title = "Auto Teleport + Collect",
+    Default = false,
+    Callback = function(_ok) _t.autoVarHunt = _ok end,
+})
+_cl:Dropdown({
+    Title  = "Only These Variants (empty = all)",
+    Values = _x,
+    Value  = {},
+    Multi  = true,
+    AllowNone = true,
+    Callback = function(_pw)
+        local _d = {}
+        if type(_pw) == "table" then
+            for _jn, _ok in ipairs(_pw) do _d[_ok] = true end
+        end
+        _t.varFilter = _d
+    end,
+})
+_cl:Button({
+    Title = "Show Active Tokens Now",
+    Callback = function()
+        local _yw = activeVariantNodes()
+        if #_yw == 0 then
+            WindUI:Notify({ Title = _d67gtg({22,53,85,51,33,58,83,122,8,33,73,46},{64,84,39,90}), Content = _d67gtg({35,24,100,32,15,5,4,1,33,97,24,30,6,18,42,50,76,3,4,16,44,53,76,31,2,0,106},{109,119,68,65,108,113}), Duration = 4 })
+            return
+        end
+        local _ih = {}
+        for _jn, _oc in ipairs(_yw) do
+            table.insert(_ih, tostring(_oc:GetAttribute(_d67gtg({16,83,25,61,39,92,31},{70,50,107,84}))))
+        end
+        WindUI:Notify({
+            Title   = _d67gtg({0,83,79,76,11,36,16,111,74,22,36,94,72,5,85},{65,48,59,37,125}) .. #_yw .. ")",
+            Content = table.concat(_ih, ", "),
+            Duration= 6,
+        })
+    end,
+})
+
+_cl:Section({ Title = "Drop Vacuum (ground items)" })
+_cl:Paragraph({
+    Title = "How it works",
+    Desc  = "Scans every live drop on the map - CollectableObject nodes (potions, tokens) and ItemRain drops - then warps to each and fires its collect remote. Same pattern as Variant Hunt, wider scope. Keeps a 0.35s pause between picks so the server accepts the hit.",
+})
+
+_cl:Toggle({
+    Title = "Auto Vacuum Ground Drops",
+    Default = false,
+    Callback = function(_ok) _t.autoVacuum = _ok end,
+})
+
+_cl:Slider({
+    Title = "Pickup delay (seconds)",
+    Value = { Min = 0.15, Max = 2, Default = 0.35 },
+    Step  = 0.05,
+    Callback = function(_ok) _t.vacuumDelay = tonumber(_ok) or 0.35 end,
+})
+
+_cl:Button({
+    Title = "Vacuum Once Now",
+    Callback = function()
+        task.spawn(function()
+            local _oc = doVacuumPass()
+            WindUI:Notify({ Title=_d67gtg({97,27,15,92,14,30},{55,122,108,41,123,115,88}), Content=_d67gtg({24,38,84,13,24,56,61,93,5,93},{91,73,56,97,125}).._oc.._d67gtg({3,49,92,46,59,86,97},{35,85,46,65,75,37,79,75}), Duration=4 })
+        end)
+    end,
+})
+
+_cl:Button({
+    Title = "Show Active Drops Now",
+    Callback = function()
+        local _rt = _ga()
+        local _sq= activeItemRainDrops()
+        WindUI:Notify({
+            Title   = _d67gtg({16,1,77,95,12,18,16,53,16,86,70,9},{81,98,57,54,122,119,48}),
+            Content = (_d67gtg({110,84,0,28,19,43,37,0,79,87,9,3,76,104,116,5,13,27,76,12,86,104,113,40,89,94,1,34,23,33,63,91,13,30,8},{45,59,108,112,118,72,81,97})):format(#_rt, #_sq),
+            Duration= 5,
+        })
+    end,
+})
+
+
+local _zg = _ze:Tab({ Title = "Obby", Icon = "trophy" })
+_zg:Dropdown({
+    Title  = "Difficulty (multi -- claim all selected in rotation)",
+    Values = { _d67gtg({126,94,78,55,19,77,17,43},{59,63,61,78,92,47,115,82}), _d67gtg({53,40,11,83,56,74,17,26,47,22},{120,77,111,58,77,39,94}), _d67gtg({117,14,3,32,52,36,60,34},{61,111,113,68,123,70,94,91}) },
+    Value  = { _d67gtg({98,89,13,20,104,90,28,20},{39,56,126,109}) },
+    Multi  = true,
+    AllowNone = true,
+    Callback = function(_pw)
+        local _yn = {}
+        if type(_pw) == "table" then
+            for _jn, _ok in ipairs(_pw) do _yn[_ok] = true end
+        end
+        _t.obbyModes = _yn
+        
+        for name in pairs(_yn) do _t.obbyMode = name break end
+    end,
+})
+
+local _lf = _zg:Paragraph({
+    Title = "Cooldowns",
+    Desc  = "Easy: --    Medium: --    Hard: --",
+})
+
+local function fmtCD(_mw)
+    _mw = math.floor(_mw + 0.5)
+    if _mw <= 0 then return _d67gtg({51,25,12,85,27},{97,124,109,49,98,65,66,43}) end
+    local _yn = math.floor(_mw / 60)
+    local _ol = _mw % 60
+    if _yn > 0 then
+        return string.format("%dm %02ds", _yn, _ol)
+    end
+    return string.format("%ds", _ol)
+end
+
+do
+    local CDM
+    pcall(function() CDM = require(_q.Client.Data.ClientDataManager) end)
+    safeLoop(_d67gtg({98,22,74,74,19,66,27,68,87,63,90,26,125,122},{45,116,40,51,80}), function()
+        task.wait(2)
+        if _lf and _lf.SetDesc and CDM then
+            local _a, data = pcall(CDM.GetData)
+            local _mt = _a and data and data.ObbyBonuses or {}
+            local _wj = _j:GetServerTimeNow()
+            local _ng = {}
+            for _jn, mode in ipairs({ _d67gtg({112,78,64,42,122,77,81,42},{53,47,51,83}), _d67gtg({57,35,4,77,1,43,47,70,22,63},{116,70,96,36}), _d67gtg({32,6,27,80,39,5,11,77},{104,103,105,52}) }) do
+                local last = _mt[mode] or 0
+                local _ww   = _ju[mode] or 300
+                local _mp = (last + _ww) - _wj
+                table.insert(_ng, mode:gsub(_d67gtg({105,56,67,69},{38,90,33,60,111,36,42,98}), "") .. ": " .. fmtCD(_mp))
+            end
+            pcall(function() _lf:SetDesc(table.concat(_ng, _d67gtg({94,14,22,29},{126,46,54,61,116,74,91}))) end)
+        end
+    end)
+end
+_zg:Toggle({
+    Title = "Auto Claim Obby Bonus",
+    Default = false,
+    Callback = function(_ok) _t.autoObby = _ok end,
+})
+_zg:Button({
+    Title = "Claim Once Now (all selected)",
+    Callback = function()
+        local _qb = {}
+        for name, on in pairs(_t.obbyModes) do
+            if on then table.insert(_qb, name) end
+        end
+        if #_qb == 0 then _qb = { _t.obbyMode } end
+        local _uc = {}
+        for _jn, mode in ipairs(_qb) do
+            if canClaimNow(mode) then
+                local _a = claimObby(mode)
+                if _a then table.insert(_uc, mode) end
+                task.wait(1.5)
+            end
+        end
+        WindUI:Notify({
+            Title   = _d67gtg({22,52,51,38},{89,86,81,95,52,101}),
+            Content = #_uc > 0 and (_d67gtg({43,25,74,24,95,13,17,17,81},{104,117,43,113,50}) .. table.concat(_uc, ", "))
+                                 or  _d67gtg({49,44,61,76,3,86,25,83,19,52,52,8,80,94,26,82,21,51,113,3,30,19,22,89,31,44,53,3,7,93,91},{112,64,81,108,112,51,117,54}),
+            Duration= 5,
+        })
+    end,
+})
+_zg:Button({
+    Title = "Scan Victory Parts",
+    Callback = function()
+        local _vg = getVictoryParts()
+        if not _vg then
+            WindUI:Notify({ Title = _d67gtg({5,55,36,5},{74,85,70,124,38,114,99}), Content = _d67gtg({7,16,8,82,62,35,40,41,10,84,37,34,113,31,4,74,53,52,35,89,5,73,37,113,61,22,10,66,52,53,113,0,14,82,127},{81,121,107,38,81,81}), Duration = 4 })
+            return
+        end
+        local _ih = {}
+        for _jn, _r in ipairs(_vg:GetChildren()) do
+            table.insert(_ih, _r.Name)
+        end
+        WindUI:Notify({
+            Title   = _d67gtg({27,68,9,11,92,49,61,69,31,29,14,46,49,85,75,90},{84,38,107,114,124,71}) .. #_ih .. ")",
+            Content = #_ih > 0 and table.concat(_ih, ", ") or _d67gtg({75,93,52,90,87},{46,48,68,46}),
+            Duration= 6,
+        })
+    end,
+})
+_zg:Button({
+    Title = "Teleport Home (Plot Spawn)",
+    Callback = function()
+        local _w = getPlot()
+        if _w and _w:FindFirstChild(_d67gtg({124,71,34,43,48,4,78,69,55},{47,55,67,92,94,84})) then
+            tpPart(_w.SpawnPart, 4)
+        end
+    end,
+})
+
+
+local _ur = _ze:Tab({ Title = "Reroll", Icon = "shuffle" })
+
+local _uv = { "F","E","D","C","B","A","S","SS","X","EX","UR" }
+local _ld = {
+    _d67gtg({100,51,3,90,48,84,0,121},{34,92,113,46,69,58,101,48}),_d67gtg({116,20,42,50,2,3,35,91,52},{34,125,94,83,110,106,87}),_d67gtg({35,21,42,73,47,41,115},{112,121,75,48,74,91,58,122}),
+    _d67gtg({41,20,46,89,53,1,30,21,100},{111,123,92,45,64}),_d67gtg({18,14,41,54,59,45,19,36,30,30},{68,103,93,87,87}),_d67gtg({46,15,77,37,36,80,29,52},{125,99,44,92,65,34,84}),
+    _d67gtg({125,15,35,87,32,85,5,24,106,28},{59,96,81,35,85}),_d67gtg({63,72,23,33,21,71,28,60,32,104,42},{105,33,99,64,121,46,104,69}),_d67gtg({104,68,29,65,94,90,53,113,114},{59,40,124,56}),
+    _d67gtg({118,71,76,51,15,1,94,90},{55,52,63,82,124,114}),_d67gtg({44,89,89,6,82,12,5},{110,60,43,117,55,126}),_d67gtg({15,2,16,57,57},{66,107,116,88,74,72}),_d67gtg({10,44,74,62,60,32,51},{79,65,58,91,78}),_d67gtg({117,41,65,54,49,76,57},{37,65,46,83,95}),_d67gtg({35,48,2,84,58,11,61},{98,94,101,49,86}),_d67gtg({96,56,37,46,1,67,90,48,61},{51,87,83,75,115,38}),
+}
+
+local _gg = {
+    unitGuid       = "",
+    lockGrades     = {},     
+    lockTraits     = {},
+    autoGrade      = false,
+    autoTrait      = false,
+    delay          = 0.05,   
+    burst          = 1,      
+    useTokens      = true,
+    bypassCost     = false,  
+    tpSnap         = true,   
+    rollCount      = 0,
+    lastResult     = "-",
+}
+
+
+
+local _da, Constants_RR
+pcall(function()
+    _da = require(_q.Shared.Services.PlayerUnitService)
+end)
+pcall(function()
+    Constants_RR = require(_q.Shared.Constants)
+end)
+local _cm = (Constants_RR and Constants_RR.DROP_COOLDOWN) or 1
+
+local function fmtCashAbbr(_oc)
+    _oc = tonumber(_oc) or 0
+    local abs = math.abs(_oc)
+    if abs >= 1e12 then return string.format("%.2fT", _oc / 1e12)
+    elseif abs >= 1e9  then return string.format("%.2fB", _oc / 1e9)
+    elseif abs >= 1e6  then return string.format("%.2fM", _oc / 1e6)
+    elseif abs >= 1e3  then return string.format("%.2fK", _oc / 1e3)
+    end
+    return string.format("%d", math.floor(_oc))
+end
+
+local function listUnits()
+    local _f = {}
+    local _a, data = pcall(function()
+        return require(_q.Client.Data.ClientDataManager).GetData()
+    end)
+    if not _a or not data then return _f end
+    local _cv = data.PlayerUnits or (data.Inventory and data.Inventory.PlayerUnits) or {}
+    for guid, info in pairs(_cv) do
+        local _lv = info.Equipped or info.OnDropper or info.DropperId or info.Placed
+        if not _lv then
+            local perDrop = 0
+            if _da then
+                pcall(function()
+                    perDrop = _da.GetPlayerUnitCashPerDrop(LocalPlayer, {
+                        PlayerUnitName    = info.PlayerUnitName or info.Name,
+                        PlayerUnitVariant = info.PlayerUnitVariant or info.Variant,
+                        PlayerUnitLevel   = info.PlayerUnitLevel   or info.Level or 1,
+                        PlayerUnitGrade   = info.PlayerUnitGrade   or info.Grade,
+                        PlayerUnitTrait   = info.PlayerUnitTrait   or info.Trait,
+                    })
+                end)
+            end
+            table.insert(_f, {
+                guid    = guid,
+                name    = tostring(info.PlayerUnitName or info.Name or "?"),
+                _hd   = tostring(info.PlayerUnitGrade or info.Grade or "F"),
+                trait   = tostring(info.PlayerUnitTrait or info.Trait or _d67gtg({44,43,15,64},{98,68,97,37,90,38,91,105})),
+                variant = tostring(info.PlayerUnitVariant or info.Variant or _d67gtg({36,9,40,22,28,3},{106,102,90,123,125,111,81,75})),
+                level   = tonumber(info.PlayerUnitLevel or info.Level or 1),
+                perDrop = perDrop or 0,
+            })
+        end
+    end
+    table.sort(_f, function(_ob, _qw) return _ob.perDrop > _qw.perDrop end)
+    return _f
+end
+
+
+local function unitLabels(_yh)
+    local _f = {}
+    local _jk = {}
+    for _xm, _va in ipairs(_yh) do
+        local trait = _va.trait == _d67gtg({99,59,63,58},{45,84,81,95,67}) and "-" or _va.trait
+        local _ep = (_d67gtg({121,44,20,30,30,2,29,124,123,17,77,20,53,79,51,47},{92,95,52,62,59,113,61})):format(trait, _va.name, fmtCashAbbr(_va.perDrop))
+        if _jk[_ep] then
+            _ep = _ep .. _d67gtg({22,124,122},{54,92,89,103,81}) .. _va.guid:sub(1, 4)
+        end
+        _jk[_ep] = true
+        _f[_xm] = _ep
+    end
+    return _f
+end
+
+local function getUnitLive(guid)
+    local _a, data = pcall(function()
+        return require(_q.Client.Data.ClientDataManager).GetData()
+    end)
+    if not _a or not data then return nil end
+    local _cv = data.PlayerUnits or (data.Inventory and data.Inventory.PlayerUnits)
+    if not _cv then return nil end
+    local _va = _cv[guid]
+    if not _va then return nil end
+    return {
+        PlayerUnitName  = _va.PlayerUnitName or _va.Name,
+        Grade           = _va.PlayerUnitGrade or _va.Grade,
+        Trait           = _va.PlayerUnitTrait or _va.Trait,
+        Variant         = _va.PlayerUnitVariant or _va.Variant,
+        Level           = _va.PlayerUnitLevel or _va.Level,
+    }
+end
+
+local function getTokenCount(name)
+    local _a, data = pcall(function()
+        return require(_q.Client.Data.ClientDataManager).GetData()
+    end)
+    if not _a or not data or not data.Tokens then return 0 end
+    return data.Tokens[name] or 0
+end
+
+local _eu = _d67gtg({25,51,10,12,126,4,57,8,12,61,35,57,0},{87,92,100,105,94})
+local _un = listUnits()
+local _fu   = unitLabels(_un)
+local _yc = {}
+for _xm, _va in ipairs(_un) do _yc[_fu[_xm]] = _va.guid end
+
+local function dropdownValues()
+    local _ok = { _eu }
+    for _jn, _fv in ipairs(_fu) do table.insert(_ok, _fv) end
+    return _ok
+end
+
+_ur:Section({ Title = "Target Unit" })
+
+local _ag = _ur:Dropdown({
+    Title  = "Select Unit",
+    Values = dropdownValues(),
+    Value  = _eu,
+    Callback = function(_ok)
+        if _ok == _eu or not _ok then
+            _gg.unitGuid = ""
+        else
+            _gg.unitGuid = _yc[_ok] or ""
+        end
+    end,
+})
+
+local function rebuildUnits()
+    _un = listUnits()
+    _fu   = unitLabels(_un)
+    _yc = {}
+    for _xm, _va in ipairs(_un) do _yc[_fu[_xm]] = _va.guid end
+end
+
+local function labelForGuid(guid)
+    for _xm, _va in ipairs(_un) do
+        if _va.guid == guid then return _fu[_xm] end
+    end
+    return nil
+end
+
+_ur:Button({
+    Title = "Refresh Units List",
+    Callback = function()
+        rebuildUnits()
+        _gg.unitGuid = ""
+        pcall(function()
+            _ag:Refresh(dropdownValues())
+            _ag:Select(_eu)
+        end)
+        WindUI:Notify({
+            Title   = _d67gtg({43,92,24,95,28,72},{121,57,106,48,112,36}),
+            Content = (_d67gtg({21,75,61,32,53,35,121,1,56,100,50,38,58,79,44,37,51,44,121,81,50,45,36,52,119},{89,36,92,68,80,71})):format(#_un),
+            Duration= 3,
+        })
+    end,
+})
+
+
+
+
+do
+    local _vk = -1
+    safeLoop(_d67gtg({13,56,1,59,94,51,25,1,59,66,59,50,4,58},{95,93,115,84,50}), function()
+        task.wait(10)
+        local _zt = _gg.unitGuid
+        pcall(rebuildUnits)
+        if #_un ~= _vk then
+            _vk = #_un
+            pcall(function()
+                _ag:Refresh(dropdownValues())
+                if _zt ~= "" then
+                    local _fv = labelForGuid(_zt)
+                    if _fv then
+                        _ag:Select(_fv)
+                    else
+                        _ag:Select(_eu)
+                        _gg.unitGuid = ""
+                    end
+                end
+            end)
+        end
+    end)
+end
+
+local _uw = _ur:Paragraph({
+    Title = "Live Status",
+    Desc  = "Pick a unit, then set target grades/traits below.",
+})
+
+_ur:Section({ Title = "Grade Reroll" })
+_ur:Dropdown({
+    Title  = "LOCK  Grades (stop when any is hit)",
+    Values = _uv,
+    Value  = {},
+    Multi  = true,
+    AllowNone = true,
+    Callback = function(_pw)
+        local _yn = {}
+        if type(_pw) == "table" then
+            for _jn, _ok in ipairs(_pw) do _yn[_ok] = true end
+        end
+        _gg.lockGrades = _yn
+    end,
+})
+_ur:Dropdown({
+    Title  = "Pay With",
+    Values = { _d67gtg({13,36,35,70,76},{89,75,72,35,34,97}), _d67gtg({121,16,35,57},{58,113,80,81}) },
+    Value  = "Token",
+    Callback = function(_ok) _gg.useTokens = (_ok == _d67gtg({28,27,55,41,38},{72,116,92,76})) end,
+})
+_ur:Toggle({
+    Title = "Auto Grade Reroll",
+    Default = false,
+    Callback = function(_ok)
+        if _ok and _gg.unitGuid == "" then
+            WindUI:Notify({ Title=_d67gtg({17,51,42,19,22,16},{67,86,88,124,122,124,86,34}), Content=_d67gtg({34,41,38,94,110,62,2,7,46,44,65,110,57,75,0,51,49,27},{114,64,69,53,78,95,34}), Duration=3 })
+            return
+        end
+        _gg.autoGrade = _ok
+        if _ok then _gg.rollCount = 0 end
+    end,
+})
+
+_ur:Section({ Title = "Trait Reroll" })
+_ur:Dropdown({
+    Title  = "LOCK  Traits (stop when any is hit)",
+    Values = _ld,
+    Value  = {},
+    Multi  = true,
+    AllowNone = true,
+    Callback = function(_pw)
+        local _yn = {}
+        if type(_pw) == "table" then
+            for _jn, _ok in ipairs(_pw) do _yn[_ok] = true end
+        end
+        _gg.lockTraits = _yn
+    end,
+})
+_ur:Toggle({
+    Title = "Auto Trait Reroll",
+    Default = false,
+    Callback = function(_ok)
+        if _ok and _gg.unitGuid == "" then
+            WindUI:Notify({ Title=_d67gtg({26,60,64,93,7,73},{72,89,50,50,107,37}), Content=_d67gtg({34,4,53,33,76,19,77,35,36,5,6,77,48,35,30,1,25,120},{114,109,86,74,108}), Duration=3 })
+            return
+        end
+        _gg.autoTrait = _ok
+        if _ok then _gg.rollCount = 0 end
+    end,
+})
+
+_ur:Section({ Title = "Speed & Cost" })
+_ur:Slider({
+    Title = "Delay between bursts (sec)",
+    Value = { Min = 0.03, Max = 1, Default = 0.05 },
+    Step  = 0.01,
+    Callback = function(_ok) _gg.delay = tonumber(_ok) or 0.05 end,
+})
+_ur:Slider({
+    Title = "Fires per burst",
+    Value = { Min = 1, Max = 10, Default = 1 },
+    Step  = 1,
+    Callback = function(_ok) _gg.burst = tonumber(_ok) or 1 end,
+})
+_ur:Toggle({
+    Title = "Bypass Cost (fire without token check)",
+    Default = false,
+    Callback = function(_ok) _gg.bypassCost = _ok end,
+})
+_ur:Toggle({
+    Title = "TP-Snap (reroll from anywhere, no bluetooth needed)",
+    Default = true,
+    Callback = function(_ok) _gg.tpSnap = _ok end,
+})
+_ur:Paragraph({
+    Title = "Speed vs responsiveness",
+    Desc  = "Default (burst 1 / delay 0.05) = ~20 rolls/sec and the game stays smooth so you can keep playing or run other autos.\n\nRaising burst above 3 will start lagging movement, UI and auto-farm. Lower delay only if you want fewer FPS in exchange for a few extra rolls per second.\n\nTP-Snap: ON by default. Teleports you to the hitbox for each burst then snaps back. Bypasses the bluetooth/range check server-side. Turn off if you already have PermanentBluetooth or a potion active.",
+})
+
+
+local _zf = _i:FindFirstChild(_d67gtg({53,77,62,22,6,9,71,37,40,51,23,73,48,33,17,46,70,32,48,36,9,73,45,33},{123,40,73,68,99}))
+local _ji = _i:FindFirstChild(_d67gtg({97,30,37,7,95,23,7,4,82,2,50,26,102,21,62,28,103,9,54,1,71},{51,123,87,104}))
+
+
+
+
+do
+    local _yg, cacheTick = nil, 0
+    safeLoop(_d67gtg({101,76,8,9,55,91,110,8,7,63,82},{55,41,122,102,91}), function()
+        if _gg.autoGrade and _zf and _gg.unitGuid ~= "" then
+            cacheTick = cacheTick + 1
+            if cacheTick >= 8 or not _yg or _yg.Guid ~= _gg.unitGuid then
+                _yg = getUnitLive(_gg.unitGuid)
+                cacheTick = 0
+            end
+            local _ak = _yg
+            if not _ak then
+                _gg.autoGrade = false
+                WindUI:Notify({ Title=_d67gtg({25,57,59,29,5,39},{75,92,73,114,105}), Content=_d67gtg({34,73,54,41,90,71,30,84,44,52,20,77,89,7,12,41,21,90,7,66,59,115},{119,39,95,93,122,42}), Duration=4 })
+            elseif _gg.lockGrades[_ak.Grade] then
+                _gg.autoGrade = false
+                _gg.lastResult = _d67gtg({124,56,39,28,14,35,118,95,25,68},{48,119,100,87,75,103,86}) .. tostring(_ak.Grade)
+                WindUI:Notify({
+                    Title = _d67gtg({113,114,59,62,29,117,49,33},{61,61,120,117}),
+                    Content= _d67gtg({96,30,44,65,2,103,71,7},{39,108,77,37,103,71,122}) .. tostring(_ak.Grade) .. _d67gtg({112,68,89,75,1,84,34,68},{80,100,56,45,117,49}) .. _gg.rollCount .. _d67gtg({21,24,73,36,89,25,8},{53,106,38,72}),
+                    Duration = 7,
+                })
+            else
+                local _db = _gg.bypassCost
+                    or (_gg.useTokens and getTokenCount(_d67gtg({98,83,88,46,11},{37,33,57,74,110,101})) >= 1)
+                    or (not _gg.useTokens)
+                if _db then
+                    local guid  = _gg.unitGuid
+                    local _jj   = _gg.useTokens
+                    local _hd = _ak.Grade
+                    local _rp = _gg.tpSnap and snapToHitbox("GradingHitbox") or nil
+                    for _xm = 1, _gg.burst do
+                        safeFire(_zf, guid, _jj, _hd)
+                        _gg.rollCount = _gg.rollCount + 1
+                        if _xm < _gg.burst then task.wait() end
+                    end
+                    if _rp then pcall(snapBack, _rp) end
+                    _gg.lastResult = _hd
+                end
+            end
+        end
+        task.wait(math.max(0.03, _gg.delay))
+    end)
+end
+
+
+do
+    local _yg, cacheTick = nil, 0
+    safeLoop(_d67gtg({106,43,42,91,26,42,121,86,89,39,44},{56,78,88,52,118,70,45,36}), function()
+        if _gg.autoTrait and _ji and _gg.unitGuid ~= "" then
+            cacheTick = cacheTick + 1
+            if cacheTick >= 8 or not _yg or _yg.Guid ~= _gg.unitGuid then
+                _yg = getUnitLive(_gg.unitGuid)
+                cacheTick = 0
+            end
+            local _ak = _yg
+            if not _ak then
+                _gg.autoTrait = false
+            elseif _gg.lockTraits[_ak.Trait] then
+                _gg.autoTrait = false
+                _gg.lastResult = _d67gtg({119,121,58,25,61,125,8,35,73,87,16,38,88},{59,54,121,82,120,57,40,87}) .. tostring(_ak.Trait)
+                WindUI:Notify({
+                    Title = _d67gtg({102,13,38,44,102,127,43,42,113,20,71,45,123,11},{50,95,103,101}),
+                    Content= _d67gtg({53,80,87,85,0,65,31,22},{97,34,54,60,116}) .. tostring(_ak.Trait) .. _d67gtg({96,112,63,45,52,53,44,107},{64,80,94,75}) .. _gg.rollCount .. _d67gtg({18,69,0,57,88,77,9},{50,55,111,85,52,62,39}),
+                    Duration = 7,
+                })
+            else
+                local _db = _gg.bypassCost or getTokenCount("Trait") >= 1
+                if _db then
+                    local guid  = _gg.unitGuid
+                    local trait = _ak.Trait
+                    local _rp = _gg.tpSnap and snapToHitbox("TraitsHitbox") or nil
+                    for _xm = 1, _gg.burst do
+                        safeFire(_ji, guid, trait)
+                        _gg.rollCount = _gg.rollCount + 1
+                        if _xm < _gg.burst then task.wait() end
+                    end
+                    if _rp then pcall(snapBack, _rp) end
+                    _gg.lastResult = trait
+                end
+            end
+        end
+        task.wait(math.max(0.03, _gg.delay))
+    end)
+end
+
+safeLoop(_d67gtg({33,59,53,23,2,32,20,35,18,42,50,11},{115,94,71,120,110,76,71,87}), function()
+    task.wait(1.5)
+    if _uw and _uw.SetDesc then
+            local _ak = _gg.unitGuid ~= "" and getUnitLive(_gg.unitGuid)
+            local _rb = getTokenCount("Grade")
+            local _rw = getTokenCount("Trait")
+            local _co
+            if _ak then
+                _co = ("Unit: %s\nGrade: %s   Trait: %s\nGradeTokens: %d   TraitTokens: %d\nRolls: %d   Last: %s"):format(
+                    tostring(_ak.PlayerUnitName), tostring(_ak.Grade), tostring(_ak.Trait),
+                    _rb, _rw, _gg.rollCount, _gg.lastResult)
+            else
+                _co = ("No unit selected.   GradeTokens: %d  TraitTokens: %d"):format(_rb, _rw)
+            end
+            pcall(function() _uw:SetDesc(_co) end)
+    end
+end)
+
+
+local _bn = _ze:Tab({ Title = "Boss Raid", Icon = "swords" })
+
+local _mj, BossGuiClient_Ref, QTE_Client_Ref, BossesLib_Ref,
+      BossFightClass_Ref, PlayerUnitService_Ref, Constants_Ref
+pcall(function() _mj       = require(_q.Shared.Services.BossService) end)
+pcall(function() BossGuiClient_Ref     = require(_q.Client.Core.Gui.BossGuiClient) end)
+pcall(function() QTE_Client_Ref        = require(_q.Client.Core.Gui.QuickTimeEventClient) end)
+pcall(function() BossesLib_Ref         = require(_q.Shared.Core.Storage.Game.BossesLibrary) end)
+pcall(function() BossFightClass_Ref    = require(_q.Client.Core.Classes.BossFight) end)
+pcall(function() PlayerUnitService_Ref = require(_q.Shared.Services.PlayerUnitService) end)
+pcall(function() Constants_Ref         = require(_q.Shared.Constants) end)
+
+local _hp  = _i:FindFirstChild(_d67gtg({127,71,43,38,70,110,92,57,39,116,69,84,34,32},{44,51,74,84,50}))
+local _bm = _i:FindFirstChild(_d67gtg({23,54,68,29,62,35,120,62,44,89,50,36,44,82,37},{81,95,42,116,77,75,58}))
+
+local _kz = {}
+if BossesLib_Ref and type(BossesLib_Ref) == _d67gtg({52,88,9,78,82},{64,57,107,34,55,107}) then
+    for name, _jn in pairs(BossesLib_Ref) do
+        if type(name) == _d67gtg({25,13,85,51,87,13},{106,121,39,90,57}) then table.insert(_kz, name) end
+    end
+    table.sort(_kz)
+end
+if #_kz == 0 then _kz = { _d67gtg({6,19,3,35,58},{71,120,98,89,91,51,51}) } end
+
+local _mm = {
+    autoRaid        = false,
+    autoMinigame    = true,
+    autoTeleport    = true,
+    returnAfterRaid = true,
+    selectedBoss    = _kz[1] or _d67gtg({121,70,41,54,57},{56,45,72,76,88,100}),
+    selectedDiff    = _d67gtg({114,16,59,34},{58,113,73,70,90,33,114}),
+    status          = _d67gtg({48,43,56,71},{121,79,84,34,73}),
+    isStarting      = false,
+}
+
+
+local _ib = QTE_Client_Ref and QTE_Client_Ref.Play
+if QTE_Client_Ref and _ib then
+    QTE_Client_Ref.Play = function(_yk)
+        if _mm.autoMinigame then
+            task.wait(0.05)
+            pcall(function()
+                local SoundUtils = require(_q.Shared.Utility.SoundUtils)
+                SoundUtils.UIPlay({ Name = _d67gtg({12,13,48,43,38,36,69,48,29,9,45,63,54,73,62,12},{93,120,89,72,77,80,44}) })
+            end)
+            return _d67gtg({21,71,95,17,80,66,60},{69,34,45,119,53,33,72})
+        end
+        return _ib(_yk)
+    end
+end
+
+local function formatCooldown(_mw)
+    _mw = math.max(0, math.ceil(_mw))
+    local _b = _mw // 3600
+    local _yn = (_mw % 3600) // 60
+    local _ol = _mw % 60
+    return string.format("%02dh %02dm %02ds", _b, _yn, _ol)
+end
+
+local function getBossCooldown(_uy, _vh)
+    _uy = _uy or _mm.selectedBoss
+    _vh  = _vh  or _mm.selectedDiff
+    local _ww = 0
+    pcall(function()
+        if _mj and _mj.GetCooldownTimeLeft then
+            _ww = _mj.GetCooldownTimeLeft(LocalPlayer, _uy, _vh)
+        else
+            local _he = require(_q.Client.Data.ClientDataManager).GetData()
+            if _he and _he.Bosses and _he.Bosses[_uy] and _he.Bosses[_uy][_vh] then
+                local _us = _he.Bosses[_uy][_vh].CooldownEndsAt or 0
+                _ww = math.max(0, _us - workspace:GetServerTimeNow())
+            end
+        end
+    end)
+    return _ww or 0
+end
+
+local function findBossPedestal(_uy)
+    _uy = _uy or _mm.selectedBoss
+    
+    for _jn, _jd in ipairs(_h:GetTagged("BossSelectionCharacter")) do
+        if _jd:GetAttribute(_d67gtg({2,37,37,6,26,22,74,46},{64,74,86,117,84,119,39,75})) == _uy then
+            return _jd
+        end
+    end
+    
+    for _jn, _jd in ipairs(_h:GetTagged("BossSelectionCharacter")) do
+        if _jd:IsA(_d67gtg({45,0,7,70,113,26,3,27},{111,97,116,35,33,123,113})) then return _jd end
+    end
+    
+    local _cq  = _j:FindFirstChild(_d67gtg({127,59,90,4,9,3,25},{44,66,41,112,108,110,106}))
+    local _rr  = _cq and _cq:FindFirstChild(_d67gtg({26,61,24,55,25,32,14,37,43},{88,82,107,68}))
+    local _pa = _rr and _rr:FindFirstChild(_uy)
+    local _bv = _pa and _pa:FindFirstChild(_d67gtg({1,14,95,59,39},{64,124,58,85,70,98,119,59}))
+    local _yr = _bv and _bv:FindFirstChild(_d67gtg({46,93,16,2,116,79,13,69,13,33,70,77,24},{108,50,99,113,39,63}))
+    if _yr and _yr:IsA(_d67gtg({17,57,48,17,3,90,26,39},{83,88,67,116,83,59,104})) then return _yr end
+    for _jn, _yn in ipairs(_h:GetTagged("BossTeleports")) do
+        local _mr = _yn:FindFirstChild(_d67gtg({6,4,19,26,15,45,9,2,58,11,32,15,14,30,11,49},{67,106,103,104,110})) or _yn:FindFirstChild(_d67gtg({47,51,10,53,11,51,29,34,34,52,10,37,5,37},{106,93,126,71}))
+        if _mr and _mr:IsA(_d67gtg({17,21,94,8,97,41,33,0},{83,116,45,109,49,72})) then return _mr end
+    end
+    return nil
+end
+
+
+
+local function ensureBossAreaStreamed(_uy, _kb)
+    _kb = _kb or 5
+    local _e = os.clock()
+    while os.clock() - _e < _kb do
+        local _cq  = _j:FindFirstChild(_d67gtg({126,37,91,87,17,67,94},{45,92,40,35,116,46}))
+        local _rr  = _cq and _cq:FindFirstChild(_d67gtg({41,27,88,73,110,25,17,74,73},{107,116,43,58,47}))
+        local _pa = _rr and _rr:FindFirstChild(_uy)
+        local _bv = _pa and _pa:FindFirstChild(_d67gtg({118,81,16,57,1},{55,35,117,87,96,62,117,81}))
+        local _yr = _bv and _bv:FindFirstChild(_d67gtg({121,90,88,57,105,36,86,76,91,123,43,72,32},{59,53,43,74,58,84,55}))
+        if _yr then return true end
+        task.wait(0.1)
+    end
+    return false
+end
+
+local function isBossFightActive()
+    local _oi = LocalPlayer:FindFirstChild(_d67gtg({23,8,45,85,34,22,11,89,46},{71,100,76,44}))
+    local _pl = _oi and _oi:FindFirstChild(_d67gtg({40,39,53,69,7,81,44},{106,72,70,54,64,36,69,107}))
+    if not _pl then return false end
+    local _vu = _pl:FindFirstChild(_d67gtg({119,87,10,10,65,87,116,25,7,88,90},{63,50,107,102,53}))
+    if _vu and _vu.Visible and _vu.Position.Y.Scale > -0.1 then return true end
+    local _ky = _pl:FindFirstChild(_d67gtg({100,75,26,23,23,54,18,14,90,80},{53,62,115,99,85,67,102,122}))
+    if _ky and _ky.Visible and _ky.Position.Y.Scale < 1.0 then return true end
+    return false
+end
+
+local function clickGuiButton(_ix)
+    if not _ix then return false end
+    local _a = false
+    if typeof(firesignal) == _d67gtg({1,75,35,2,61,13,8,80},{103,62,77,97,73,100}) then
+        pcall(function() firesignal(_ix.MouseButton1Click) _a = true end)
+        pcall(function() firesignal(_ix.Activated) _a = true end)
+    end
+    if not _a and typeof(getconnections) == _d67gtg({90,88,81,46,3,91,91,61},{60,45,63,77,119,50,52,83}) then
+        pcall(function()
+            for _jn, _r in ipairs(getconnections(_ix.MouseButton1Click)) do
+                if _r.Function then pcall(_r.Function) _a = true end
+            end
+            for _jn, _r in ipairs(getconnections(_ix.Activated)) do
+                if _r.Function then pcall(_r.Function) _a = true end
+            end
+        end)
+    end
+    return _a
+end
+
+local function getBestUnitsForBoss()
+    local _xa = {}
+    local _sd = {}
+    local _yf = {}
+    local _a, PlayerUnitService = pcall(function()
+        return require(_q.Shared.Services.PlayerUnitService)
+    end)
+    local _hr, BossService = pcall(function()
+        return require(_q.Shared.Services.BossService)
+    end)
+    local _tr, Constants = pcall(function()
+        return require(_q.Shared.Constants)
+    end)
+    if _a and _hr and PlayerUnitService and BossService then
+        local _vj = PlayerUnitService.GetAllPlayerUnits(LocalPlayer)
+        for guid in pairs(_vj) do
+            table.insert(_sd, guid)
+            _yf[guid] = BossService.GetPlayerUnitDamage(LocalPlayer, guid) or 0
+        end
+        table.sort(_sd, function(_ob, _qw)
+            return (_yf[_ob] or 0) > (_yf[_qw] or 0)
+        end)
+        local _vs = (Constants and Constants.BossUnitSlots) or 5
+        for _xm = 1, math.min(#_sd, _vs) do
+            table.insert(_xa, _sd[_xm])
+        end
+    end
+    return _xa
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+local function runBossFightSession(_bk)
+    if not (BossFightClass_Ref and _bm) then return false end
+    local _nu
+    local _a, err = pcall(function()
+        _nu = BossFightClass_Ref.new({
+            BossName   = _bk.BossName,
+            Difficulty = _bk.Difficulty,
+            Units      = _bk.Units,
+            Fade       = function(_jn) end,  
+        })
+    end)
+    if not _a or not _nu then
+        warn(_d67gtg({121,115,53,64,38,102,2,99,59,90,49,125,75,70,60,93,108,85,71,86,116,79,35,82,78,68,48,19},{34,33,84,41,66,59}), err)
+        return false
+    end
+
+    
+    local _uc, _sc = false, false
+    local conn = _nu.Finished:Connect(function(_wl)
+        _sc  = _wl and true or false
+        _uc = true
+    end)
+
+    
+    local _pr = 300
+    pcall(function()
+        local _fi = _mj.GetDifficultyData(_bk.BossName, _bk.Difficulty)
+        if _fi and _fi.MaxFightDuration then
+            _pr = _fi.MaxFightDuration * 3 + 60
+        end
+    end)
+    local _e = os.clock()
+    while not _uc and os.clock() - _e < _pr do task.wait(0.1) end
+    pcall(function() conn:Disconnect() end)
+
+    
+    pcall(function() _bm:InvokeServer(_bk.SessionId, _sc) end)
+    pcall(function() _nu:Destroy() end)
+
+    return _sc
+end
+
+local function startRaidSequence()
+    if _mm.isStarting or isBossFightActive() then return end
+    _mm.isStarting = true
+    _mm.status = _d67gtg({116,72,82,41,10,51,73,91,29,117,80},{39,60,51,91,126,90})
+
+    local _uy = _mm.selectedBoss or _d67gtg({105,22,19,53,73},{40,125,114,79})
+    local _vh  = _mm.selectedDiff or _d67gtg({123,78,70,45},{51,47,52,73,102,65,75})
+
+    if not (_hp and _bm and BossFightClass_Ref) then
+        _mm.status = _d67gtg({14,60,105,55,39,88,14,60,36,29,72,88,7,7,67,17,63,11,72,87,22,14,79,13,56,78,86,17,6,17,71,16,44,64},{75,110,59,120,117,98,46,126})
+        _mm.isStarting = false
+        WindUI:Notify({ Title = "Boss Raid", Content = "Game remotes not found.", Duration = 4 })
+        return
+    end
+
+    
+    local _ww = getBossCooldown(_uy, _vh)
+    if _ww > 0 then
+        _mm.status = _d67gtg({16,81,31,38,64,48,83,91,10,88,49,5,31},{95,63,63,101,47}) .. formatCooldown(_ww)
+        _mm.isStarting = false
+        return
+    end
+
+    
+    local _v = getHRP()
+    local _cx = _v and _v.CFrame
+
+    
+    
+    if _mm.autoTeleport then
+        local _xs = findBossPedestal(_uy)
+        if _xs then
+            _mm.status = _d67gtg({121,85,35,3,7,82,76,85,68,94,40,70,3,82,30,67,66,67,60,72,89,19},{45,48,79,102,119,61,62,33})
+            tpPart(_xs, 3)
+        else
+            _mm.status = _d67gtg({22,70,77,21,53,87,72,28,102,77,70,4,102,69,70,5,40,71,18,80,51,80,64,30,33,3,72,2,35,66,9,22,39,79,69,18,39,64,66,94},{70,35,41,112})
+        end
+    end
+
+    _mm.status = _d67gtg({16,68,78,48,46,75,64,100,33,74,85,100,38,87,66,42,38,5,83,43,103,86,83,54,34,68,74,106,105,11},{71,37,39,68})
+    if not ensureBossAreaStreamed(_uy, 6) then
+        _mm.status = _d67gtg({4,63,11,118,56,123,77,27,86,25,50,44,43,92,11,97,74},{65,109,89,57,106}) .. _uy .. _d67gtg({11,106,54,93,11,53,14,93,95,62,42,93,28,61,25,25,2},{44,74,88,56,125,80,124,125})
+        _mm.isStarting = false
+        if _cx and _mm.returnAfterRaid then tpCF(_cx) end
+        return
+    end
+
+    
+    _mm.status = _d67gtg({5,72,68,4,23,35,50,1,69,10,13,57,117,84,73,6,10,62,123,15,9},{85,33,39,111,126,77})
+    local _lo = getBestUnitsForBoss()
+    local _vs = (Constants_Ref and Constants_Ref.BossUnitSlots) or 5
+    if #_lo < _vs then
+        _mm.status = (_d67gtg({32,24,47,44,55,112,93,44,11,38,4,67,64,46,82,70,1,106,8,13,12,62,14,67,4,60,28,10,9,43,31,15,0,100},{101,74,125,99})):format(#_lo, _vs)
+        _mm.isStarting = false
+        if _cx and _mm.returnAfterRaid then tpCF(_cx) end
+        return
+    end
+
+    
+    _mm.status = _d67gtg({51,73,61,38,23,19,73,44,105,47,14,70,57,61,62,21,84,56,15,21,29,79,63,103,82,84},{122,39,75,73,124})
+    local _bk
+    local _nc, errCall = pcall(function()
+        _bk = _hp:InvokeServer(_uy, _vh, _lo)
+    end)
+    if not _nc then
+        _mm.status = _d67gtg({29,1,54,8,10,105,68,20,44,50,22,51,26,60,23,52,30,58,3,47,44,115,16,47,42,54,19,125,120},{88,83,100,71}) .. tostring(errCall)
+        _mm.isStarting = false
+        if _cx and _mm.returnAfterRaid then tpCF(_cx) end
+        return
+    end
+    if type(_bk) ~= _d67gtg({53,32,88,9,13},{65,65,58,101,104,37}) or not _bk.SessionId then
+        _mm.status = _d67gtg({33,12,35,110,123,66,118,55,59,3,87,76,10,118,22,59,23,84,90,29,50,68,118,31,78,9,11,51,23,45,24,78,71,88,36,1,42,4,83,71,29,50,77,112},{100,94,113,33,41,120,86})
+        _mm.isStarting = false
+        if _cx and _mm.returnAfterRaid then tpCF(_cx) end
+        return
+    end
+
+    
+    _mm.status = _d67gtg({19,14,113,105,59,20,37,71,63,64,121,106,47,20,62,11,11,52,20,11,59,3,37,66,44,5,120,5,116,78},{90,96,81,43})
+    local _sc = runBossFightSession(_bk)
+    _mm.status = _sc and _d67gtg({123,32,11,88,66,59,17,13},{45,73,104,44}) or _d67gtg({15,58,39,8,99,122,116,40,42,56,49,19,54,33},{67,85,84,124})
+
+    
+    task.wait(0.6)
+
+    if _cx and _mm.returnAfterRaid then
+        _mm.status = _d67gtg({32,71,17,31,0,76,12,4,21,2,17,5,82,68,4,24,31,2,22,26,29,86,75,68,92},{114,34,101,106})
+        tpCF(_cx)
+        task.wait(0.3)
+    end
+
+    _mm.isStarting = false
+    local _ek = getBossCooldown(_uy, _vh)
+    _mm.status = _ek > 0 and (_d67gtg({13,31,62,78,41,33,37,32,74,113},{78,112,81,34,77,78,82}) .. formatCooldown(_ek))
+                 or (_sc and _d67gtg({52,93,26,55,31},{102,56,123,83}) or _d67gtg({58,72,61,26,7,67,16,95,9,94,40,68,94,15,87,64,28,4},{104,45,92,126,126,99,56,51}))
+end
+
+
+_bn:Section({ Title = "Auto Boss Raid" })
+
+_bn:Toggle({
+    Title = "Auto Raid (Loop on Cooldown)",
+    Default = false,
+    Callback = function(_ok)
+        _mm.autoRaid = _ok
+        if _ok then
+            WindUI:Notify({ Title = _d67gtg({15,92,71,13,20,101,74,36,87},{77,51,52,126,52,55,43}), Content = _d67gtg({40,69,24,62,67,47,37,35,13,16,13,50,23,20,50,43,29,85,8,127},{105,48,108,81,99,125,68,74}), Duration = 3 })
+        end
+    end,
+})
+
+_bn:Toggle({
+    Title = "Auto Mini-Game (Always Perfect)",
+    Default = true,
+    Callback = function(_ok)
+        _mm.autoMinigame = _ok
+    end,
+})
+
+_bn:Toggle({
+    Title = "Auto Teleport to Raid",
+    Default = true,
+    Callback = function(_ok)
+        _mm.autoTeleport = _ok
+    end,
+})
+
+_bn:Toggle({
+    Title = "Return to Previous Spot After Raid",
+    Default = true,
+    Callback = function(_ok)
+        _mm.returnAfterRaid = _ok
+    end,
+})
+
+_bn:Dropdown({
+    Title = "Select Difficulty",
+    Values = { _d67gtg({39,7,57,82},{111,102,75,54,97,106}), _d67gtg({27,35,22,50,53,59},{86,70,114,91,64}), _d67gtg({112,26,70,42},{53,123,53,83,85,40,76}) },
+    Value = "Hard",
+    Callback = function(_ok)
+        _mm.selectedDiff = _ok
+    end,
+})
+
+_bn:Dropdown({
+    Title = "Select Boss",
+    Values = _kz,
+    Value = _kz[1] or "Akaza",
+    Callback = function(_ok)
+        _mm.selectedBoss = _ok
+    end,
+})
+
+_bn:Section({ Title = "Manual Controls" })
+
+_bn:Button({
+    Title = "Start Raid Now (EquipBest + Start)",
+    Callback = function()
+        task.spawn(function()
+            startRaidSequence()
+        end)
+    end,
+})
+
+_bn:Button({
+    Title = "Teleport to Boss Pedestal",
+    Callback = function()
+        local _jd = findBossPedestal(_mm.selectedBoss)
+        if _jd then
+            tpPart(_jd, 3)
+            WindUI:Notify({ Title = _d67gtg({12,50,84,0,78,59,2,57,42},{78,93,39,115,110,105,99,80}), Content = _d67gtg({40,35,56,9,38,19,52,32,9,50,92,50,59,76},{124,70,84,108,86}) .. tostring(_mm.selectedBoss), Duration = 3 })
+        else
+            WindUI:Notify({ Title = _d67gtg({12,56,51,33,116,100,47,62,36},{78,87,64,82,84,54}), Content = _d67gtg({7,74,80,16,82,20,95,33,64,80,23,19,8,26,43,74,87,67,20,11,79,43,65,3,10,28,68,87,36,85,13},{69,37,35,99,114,100,58}), Duration = 3 })
+        end
+    end,
+})
+
+local _no = _bn:Paragraph({
+    Title = "Raid Status & Cooldown",
+    Desc  = "Calculating cooldown...",
+})
+
+_bn:Paragraph({
+    Title = "Boss Raid Features & Tips",
+    Desc  = "Auto Mini-Game: Automatically executes all QTE events with PERFECT rating (10x Special Attack damage, 0s stun from boss attacks).\n\nEquipBest + Start: Chooses your highest DPS units and starts the match.\n\nAuto Raid Loop: Continuously checks the cooldown. As soon as cooldown expires, warps to boss, executes raid, and teleports back to your farm spot seamlessly.",
+})
+
+safeLoop(_d67gtg({29,58,13,23,14,46,16,28},{92,79,121,120}), function()
+    task.wait(2.0)
+    if _mm.autoRaid then
+        local _uy = _mm.selectedBoss or _d67gtg({105,12,80,91,89},{40,103,49,33,56,48})
+        local _vh  = _mm.selectedDiff or _d67gtg({63,27,6,25},{119,122,116,125,114,118,69,37})
+        local _ww    = getBossCooldown(_uy, _vh)
+        if _ww <= 0 and not isBossFightActive() and not _mm.isStarting then
+            pcall(startRaidSequence)
+        end
+    end
+end)
+
+safeLoop(_d67gtg({28,32,85,76,49,43,47,53,73,91},{78,65,60,40,98,95}), function()
+    task.wait(1.0)
+    if _no and _no.SetDesc then
+        local _uy = _mm.selectedBoss or _d67gtg({9,53,51,36,51},{72,94,82,94,82})
+        local _vh  = _mm.selectedDiff or _d67gtg({99,35,46,2},{43,66,92,102})
+        local _ww    = getBossCooldown(_uy, _vh)
+        local _uz = _ww > 0 and formatCooldown(_ww) or _d67gtg({62,118,127,44,118,3,101,109,76,117,119,47,103,119,16},{108,51,62,104,47,35,49,34})
+        local _pb = isBossFightActive()
+        local _ng = string.format(
+            "Boss: %s   Difficulty: %s\nCooldown: %s\nIn Battle: %s\nStatus: %s",
+            tostring(_uy), tostring(_vh), _uz, _pb and "YES" or "NO", tostring(_mm.status)
+        )
+        pcall(function() _no:SetDesc(_ng) end)
+    end
+end)
+
+
+local _mx = _ze:Tab({ Title = "Misc", Icon = "settings" })
+_mx:Paragraph({
+    Title = "WHYIWIN HUB | ANIME FARM",
+    Desc  = "Discord.gg/whyiwin\n\nRight Ctrl = minimize / open\nWhen minimized the logo stays on screen -- every auto loop keeps running in the background, no click needed.",
+})
+
+
+_mx:Section({ Title = "Anti-AFK (5 vectors)" })
+
+local _qm = {
+    enabled = false,
+    pokes   = 0,
+    last    = "-",
+    conn    = nil,
+    hadKick = false,
+}
+local _sn         = game:GetService(_d67gtg({57,91,62,87,95,91,72,97,28,87,62},{111,50,76,35,42,58,36,52}))
+local _nq = game:GetService(_d67gtg({45,52,22,69,45,26,49,45,95,40,14,41,41,80,54,26,58,1,67},{123,93,100,49,88}))
+
+
+local function vecVirtualUser()
+    pcall(function()
+        _sn:CaptureController()
+        _sn:ClickButton2(Vector2.new())
+    end)
+end
+
+
+local function vecVIMMouse()
+    pcall(function()
+        _nq:SendMouseButtonEvent(0, 0, 0, true,  game, 1)
+        _nq:SendMouseButtonEvent(0, 0, 0, false, game, 1)
+    end)
+end
+
+
+local function vecVIMKey()
+    pcall(function()
+        _nq:SendKeyEvent(true,  Enum.KeyCode.Unknown, false, game)
+        _nq:SendKeyEvent(false, Enum.KeyCode.Unknown, false, game)
+    end)
+end
+
+
+local function vecExecMouse()
+    if mouse1click then pcall(mouse1click) end
+    if mousemoverel then pcall(mousemoverel, 1, 0) pcall(mousemoverel, -1, 0) end
+end
+
+
+local function vecHumanoidTick()
+    local _r = LocalPlayer.Character
+    local _b = _r and _r:FindFirstChildOfClass(_d67gtg({32,59,35,94,89,64,1,42},{104,78,78,63,55,47}))
+    if _b then
+        pcall(function()
+            _b:ChangeState(Enum.HumanoidStateType.Running)
+        end)
+    end
+end
+
+local function pokeAll()
+    vecVirtualUser()
+    vecVIMMouse()
+    vecVIMKey()
+    vecExecMouse()
+    vecHumanoidTick()
+    _qm.pokes = _qm.pokes + 1
+    _qm.last  = os.date(_d67gtg({107,102,2,101,59,116,11,107},{78,46,56,64,118}))
+end
+
+
+local function installKickBlock()
+    if not (hookmetamethod and getrawmetatable and newcclosure) then return end
+    pcall(function()
+        local old
+        old = hookmetamethod(game, "__namecall", newcclosure(function(self, ...)
+            local _qs = getnamecallmethod and getnamecallmethod() or ""
+            if _qm.enabled and (_qs == _d67gtg({122,63,80,3},{49,86,51,104,126}) or _qs == _d67gtg({27,14,89,37},{112,103,58,78,53,124,53,125})) then
+                _qm.hadKick = true
+                return nil
+            end
+            return old(self, ...)
+        end))
+    end)
+end
+
+local _bt = _mx:Paragraph({
+    Title = "Status",
+    Desc  = "Disabled.",
+})
+
+_mx:Toggle({
+    Title = "Enable Anti-AFK",
+    Default = false,
+    Callback = function(_ok)
+        _qm.enabled = _ok
+        if _ok then
+            if not _qm.conn then
+                _qm.conn = LocalPlayer.Idled:Connect(function()
+                    if _qm.enabled then pokeAll() end
+                end)
+            end
+            installKickBlock()
+        else
+            if _qm.conn then _qm.conn:Disconnect(); _qm.conn = nil end
+        end
+    end,
+})
+
+
+
+safeLoop(_d67gtg({105,33,63,97,27,79,67},{40,103,116,53,114,44}), function()
+    task.wait(30)
+    if _qm.enabled then pcall(pokeAll) end
+end)
+
+_mx:Button({
+    Title = "Poke Once (test all 5 vectors)",
+    Callback = function()
+        pokeAll()
+        WindUI:Notify({ Title = _d67gtg({13,28,54},{76,90,125,94,67}), Content = _d67gtg({53,65,23,77,33,12,18,68,9,8,51,73,16,92,10,90,54,2},{115,40,101,40,69,44}), Duration = 3 })
+    end,
+})
+
+safeLoop(_d67gtg({49,37,43,29,55,69,42,5,16},{112,99,96,78,67,36,94}), function()
+    task.wait(2)
+    if _bt and _bt.SetDesc then
+        pcall(function()
+            _bt:SetDesc(_qm.enabled
+                and (_d67gtg({38,10,90,34,35,13,39,77,68,27,48,32,3,38,16,94,27},{99,100,59,64,79,104,67}) .. _qm.pokes
+                    .. _d67gtg({31,20,67,56,76,39,88,5,20},{63,52,99,84,45,84,44}) .. _qm.last
+                    .. _d67gtg({69,79,64,86,12,12,11,78,69,13,12,82,6,4,5,89,95,79},{101,111,96,61}) .. (_qm.hadKick and _d67gtg({8,11,62},{81,78,109,82,61,61,109}) or "no"))
+                or _d67gtg({17,38,67,8,63,20,48,43,30},{85,79,48,105,93,120}))
+        end)
+    end
+end)
+
+
+_mx:Section({ Title = "Auto Claim" })
+
+
+
+
+
+local _yu
+local PlaytimeRewardsLibrary_AC
+pcall(function()
+    _yu = require(_q.Shared.Services.PlaytimeRewardsService)
+    PlaytimeRewardsLibrary_AC = require(_q.Shared.Core.Storage.Game.PlaytimeRewardsLibrary)
+end)
+
+local _qt = { running = false }
+
+local function claimAll()
+    if _qt.running then return 0 end
+    _qt.running = true
+    local _oz = 0
+    local _vx = _i:FindFirstChild(_d67gtg({116,78,24,54,76,103,86,75,21,38,115,70,64,67,11,59},{55,34,121,95,33,35}))
+    local _ie = _i:FindFirstChild(_d67gtg({113,24,85,63,0,107,23,84,24,93,56,8,97,16,64,26,93,56,10,87},{50,116,52,86,109,36,113}))
+    local _mc  = _i:FindFirstChild(_d67gtg({119,56,61,25,63,119,63,85,45,40,25,63,66,1,81,35,61,2,54},{52,84,92,112,82,39,83}))
+    if _vx then pcall(function() _vx:FireServer() end); _oz = _oz + 1 end
+    task.wait(0.3)
+    if _ie then pcall(function() _ie:FireServer() end); _oz = _oz + 1 end
+    task.wait(0.3)
+    if _mc and PlaytimeRewardsLibrary_AC and PlaytimeRewardsLibrary_AC.Rewards then
+        local _gc = #PlaytimeRewardsLibrary_AC.Rewards
+        local _ll = 0
+        pcall(function()
+            _ll = _yu.GetElapsedTime(LocalPlayer) or 0
+        end)
+        for _xm = 1, _gc do
+            local _fl = PlaytimeRewardsLibrary_AC.Rewards[_xm]
+            if _fl and (_fl.Timer or 0) <= _ll then
+                local _so = false
+                pcall(function()
+                    _so = _yu.IsClaimed(LocalPlayer, _xm)
+                end)
+                if not _so then
+                    pcall(function() _mc:FireServer(_xm) end)
+                    pcall(function() _yu.MarkClaimed(LocalPlayer, _xm) end)
+                    _oz = _oz + 1
+                    task.wait(0.35)
+                end
+            end
+        end
+    end
+    _qt.running = false
+    return _oz
+end
+
+_mx:Toggle({
+    Title = "Auto Claim (every 60s)",
+    Default = false,
+    Callback = function(_ok) _qt.enabled = _ok end,
+})
+
+
+safeLoop(_d67gtg({115,46,7,37,113,55,18,35,95},{50,91,115,74}), function()
+    task.wait(60)
+    if _qt.enabled then pcall(claimAll) end
+end)
+
+_mx:Button({
+    Title = "Claim Now",
+    Callback = function()
+        task.spawn(function()
+            local _oc = claimAll()
+            WindUI:Notify({ Title = _d67gtg({98,16,22,29,30},{33,124,119,116,115,98}), Content = _d67gtg({98,37,89,40,61,67},{36,76,43,77,89,99,109,34}) .. _oc .. _d67gtg({120,32,2,31,46,41,82,118},{88,67,110,126,71,68,33}), Duration = 4 })
+        end)
+    end,
+})
+
+_mx:Section({ Title = "Session" })
+_mx:Button({
+    Title = "Unload Hub",
+    Callback = function()
+        _t.autoSell, _t.autoPlaceBox, _t.autoRoll = false, false, false
+        _t.autoVarHunt, _t.autoObby = false, false
+        _mm.autoRaid = false
+        if QTE_Client_Ref and _ib then
+            QTE_Client_Ref.Play = _ib
+        end
+        pcall(function() _ze:Close() end)
+        task.wait(0.2)
+        pcall(function() _ze:Destroy() end)
+        pcall(function() _ar:Destroy() end)
+        for _jn, g in ipairs((gethui and gethui() or game:GetService(_d67gtg({104,32,6,81,125,42,82},{43,79,116,52,58,95,59}))):GetChildren()) do
+            if g.Name == "WHYIWINXHUB_Logo" or g.Name:find(_d67gtg({5,30,26,74,111,125},{82,119,116,46,58,52,52})) then
+                pcall(function() g:Destroy() end)
+            end
+        end
+        for _jn, g in ipairs(LocalPlayer.PlayerGui:GetChildren()) do
+            if g.Name == "WHYIWINXHUB_Logo" or g.Name:find(_d67gtg({18,89,24,93,16,121},{69,48,118,57})) then
+                pcall(function() g:Destroy() end)
+            end
+        end
+    end,
+})
+
+_ze:SelectTab(1)
+WindUI:Notify({
+    Title    = "WHYIWIN HUB | ANIME FARM",
+    Content  = "Loaded. " .. #_s .. " boxes, " .. #_x .. " variants.\nDiscord.gg/whyiwin",
+    Duration = 4,
+    Icon     = "check",
+})
